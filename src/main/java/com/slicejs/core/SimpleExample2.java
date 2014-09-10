@@ -173,7 +173,7 @@ public class SimpleExample2 {
 			ProxyInstrumenter s = new ProxyInstrumenter();
 
 			// Add necessary files from resources
-			s.setFileNameToAttach("/camellia.wrapper.js");
+			s.setFileNameToAttach("/slice.wrapper.js");
 			s.setFileNameToAttach("/send.and.buffer.js");
 
 			// Interface for Ast traversal

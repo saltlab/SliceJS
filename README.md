@@ -1,7 +1,7 @@
 SliceJS
 =======
 
-SliceJS assists developers in identifying the control and data dependencies for a given JavaScript variable or line. Through a combination of automated selective code transformation and dynamic backwards slicing, SliceJS is able to link related JavaScript statements together, based on some initial slicing criteria. The selective instrumentation is based on a static analysis algorithm and allows our tool to mantain a low runtime overhead while collecting a more concise execution trace. Slicing has a multitude of uses and this tool in particular was recently used in our fault localization tool [wiki](http://salt.ece.ubc.ca/software/camellia/).
+SliceJS assists developers in identifying the control and data dependencies for a given JavaScript variable or line. Through a combination of automated selective code transformation and dynamic backwards slicing, SliceJS is able to link related JavaScript statements together, based on some initial slicing criteria. The selective instrumentation is based on a static analysis algorithm and allows our tool to mantain a low runtime overhead while collecting a more concise execution trace. Slicing has a multitude of uses and this tool in particular was recently used in our fault localization tool [Camellia](http://salt.ece.ubc.ca/software/camellia/).
 
 After exercising a target web application, SliceJS generates an interactive  visualization that allows users to replay an application's execution at the JavaScript source code level. This allows developers to deterministically debug their applications offline, once some desired behaviour has been captured.
 
@@ -18,7 +18,7 @@ To install, checkout the project from GitHub and import it into Eclipse as an ex
 
 ### Configuration
 
-SliceJS has been tested with the photo gallery application [Phormer](http://p.horm.org/er/) and the [WSO2 Enterprise Store](http://wso2.com/products/enterprise-store/). These example applications contain some basic synchronous and asynchronous JavaScript events. To use SliceJS with the Phormer gallery application, download Phormer and deploy it locally using a personal webserver such as [MAMP](http://www.mamp.info/en/index.html). Then, run the SliceJS project via the [Main]() class with the following arguments (change server url based on your own configuration).
+SliceJS has been tested with the photo gallery application [Phormer](http://p.horm.org/er/) and the [WSO2 Enterprise Store](http://wso2.com/products/enterprise-store/). These example applications contain some basic synchronous and asynchronous JavaScript events. To use SliceJS with the Phormer gallery application, download Phormer and deploy it locally using a personal webserver such as [MAMP](http://www.mamp.info/en/index.html). Then, run the SliceJS project via the [Main](http://github.com/sequeirashel/SliceJS/blob/master/src/main/java/com/slicejs/core/Main.java) class with the following arguments (change server url based on your own configuration).
 
 
 ```
@@ -27,9 +27,9 @@ SliceJS has been tested with the photo gallery application [Phormer](http://p.ho
 
 Doing so will create a new browser instance of FireFox, which will automatically navigate to the provided URL. From here you are free to exercise the application's underlying JavaScript code. To better utilize SliceJS with Phormer, please add a few photos to the application before running our tool. 
 
-Camellia can be tested with the Enterprise Store in a similar manner. First, download the WSO2 application binary files from the above linked URL and then follow the provided instructions to deploy the application locally (running the appropriate script from within the (``bin``) folder).
+SliceJS can be tested with the Enterprise Store in a similar manner. First, download the WSO2 application binary files from the above linked URL and then follow the provided instructions to deploy the application locally (running the appropriate script from within the (``bin``) folder).
 
-In order to test your own web-application using Camellia, deploy the application and provide an initial slicing criteria to SliceJS in a similar fashion as shown above.
+In order to test your own web-application using SliceJS, deploy the application and provide an initial slicing criteria to SliceJS in a similar fashion as shown above.
 
 ### Running the Tool 
 

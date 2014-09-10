@@ -338,48 +338,6 @@ public class SimpleExample2 {
 				System.out.println(allFiles);
 				System.setOut(oldOut);
 
-				// Line numbers and file names have been recorded to disk (above). Now add level 2 function names to domAccesses aka test case summary
-				File file = new File("domAccesses.json");
-				FileReader fr = new FileReader(file);
-				BufferedReader br = new BufferedReader(fr); 
-				String ss = "";
-				String fileContents = "";
-
-				// Read assertion accesses and results from file and instantiate JSONObject
-				while((ss = br.readLine()) != null) {
-					fileContents += ss + "\n";
-				}
-				br.close();
-
-				JSONObject testCaseSummary = new JSONObject(fileContents);
-				// Look for failing assertion
-				Iterator it = testCaseSummary.keys();
-				JSONObject assertion = null;
-				while (it.hasNext()) {
-					assertion = testCaseSummary.getJSONObject((String) it.next());
-					if (!assertion.getString("outcome").equals("true")) {
-						ArrayList<String> fnNamesAcrossFiles = new ArrayList<String>();
-						for (int j = 0; j < theSlice.size(); j++) {
-							fnNamesAcrossFiles.addAll(theSlice.get(j).getLevel2FunctionNames());
-						}
-
-						// Order of relevant functions backwards because of backwards slicing
-						Collections.reverse(fnNamesAcrossFiles);
-
-						// Found a failing assertion
-						assertion.put("level2", fnNamesAcrossFiles);
-						// NOT SURE IF THE ABOVE WILL WORK (ASSIGNING Collection to key in JSONObject)
-					}
-				}
-
-				if (assertion != null) {
-					// Rewrite assertion summary since level 2 functions were added for failing assertion
-					File output = new File("domAccesses.json");
-					FileWriter fw = new FileWriter(output);
-					fw.write(testCaseSummary.toString(4));
-					fw.close();
-				}
-
 			} else {
 				System.out.println("Application not exercised enough! No slice produced.");
 			}
@@ -942,48 +900,6 @@ public class SimpleExample2 {
 		}
 		if (!found) {
 			expandedSlice.add(o);
-		}
-
-		try {
-			File getSliceCriteria = new File("src/main/webapp/fish-eye-zoom-camera/"+o.getFile());
-			FileReader fr2 = new FileReader(getSliceCriteria);
-			BufferedReader br2 = new BufferedReader(fr2); 
-			String webAppCode = "";
-
-			// Read assertion accesses and results from file and instantiate JSONObject
-			String s2;
-			while((s2 = br2.readLine()) != null) {
-				webAppCode += s2+"\n";
-			}
-			br2.close();
-
-			/* initialize JavaScript context */
-			Context cx = Context.enter();
-
-			/* create a new parser */
-			CompilerEnvirons compilerEnvirons =  new CompilerEnvirons();
-			compilerEnvirons.setRecordingLocalJsDocComments(true);
-			compilerEnvirons.setAllowSharpComments(true);
-			compilerEnvirons.setRecordingComments(true);
-			compilerEnvirons.setOptimizationLevel(0);
-			Parser rhinoParser = new Parser(compilerEnvirons, cx.getErrorReporter());
-
-			/* parse some script and save it in AST */
-			AstRoot ast = rhinoParser.parse(new String(webAppCode), o.getFile(), 0);
-
-			// Init. searcher
-			ParentFunctionFinder pff = new ParentFunctionFinder();
-			// Set Line to look for
-			pff.setLineNumber(o.getLineNo());
-			// Search for enclosing function
-			ast.visit(pff);
-
-
-			if (TraceHelper.getFileLineMapping(o.getFile(), theSlice).getLevel2FunctionNames().indexOf(pff.getParentFunction()) == -1) {
-				TraceHelper.getFileLineMapping(o.getFile(), theSlice).addLevel2FunctionName(pff.getParentFunction());
-			}
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
 		}
 	}
 

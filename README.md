@@ -18,14 +18,14 @@ To install, checkout the project from GitHub and import it into Eclipse as an ex
 
 ### Configuration
 
-SliceJS has been tested with the photo gallery application [Phormer](http://p.horm.org/er/) and the [WSO2 Enterprise Store](http://wso2.com/products/enterprise-store/). These example applications contain some basic synchronous and asynchronous JavaScript events. To use SliceJS with the Phormer gallery application, download Phormer and deploy it locally using a personal webserver such as [MAMP](http://www.mamp.info/en/index.html). Then, run the SliceJS project via the [Main](http://github.com/sequeirashel/SliceJS/blob/master/src/main/java/com/slicejs/core/Main.java) class with the following arguments (change server url based on your own configuration).
+SliceJS has been tested with the photo gallery application [Phormer](http://p.horm.org/er/) and the [WSO2 Enterprise Store](http://wso2.com/products/enterprise-store/) running Firefox 23.0.1. These example applications contain some basic synchronous and asynchronous JavaScript events. To use SliceJS with the Phormer gallery application, download Phormer and deploy it locally using a personal webserver such as [MAMP](http://www.mamp.info/en/index.html). Then, run the SliceJS project via the [Main](http://github.com/sequeirashel/SliceJS/blob/master/src/main/java/com/slicejs/core/Main.java) class with the following arguments (change server url based on your own configuration).
 
 
 ```
 --server localhost:8888/?feat=slideshow --file phorm.js --line 274 --variable ss_cur
 ```
 
-Doing so will create a new browser instance of FireFox, which will automatically navigate to the provided URL. From here you are free to exercise the application's underlying JavaScript code. To better utilize SliceJS with Phormer, please add a few photos to the application before running our tool. 
+Doing so will create a new browser instance of Firefox, which will automatically navigate to the provided URL. From here you are free to exercise the application's underlying JavaScript code. To better utilize SliceJS with Phormer, please add a few photos to the application before running our tool.
 
 SliceJS can be tested with the Enterprise Store in a similar manner. First, download the WSO2 application binary files from the above linked URL and then follow the provided instructions to deploy the application locally (running the appropriate script from within the (``bin``) folder).
 
@@ -40,7 +40,7 @@ mvn jetty:run
 ```
 
 If successful, a notification should appear confirming that the server is up-and-running  
-(``[INFO] Started Jetty Server``). Next, run the SliceJS project as a Java application from Eclipse by setting [com.slicejs.core.Main]() as the Main class. 
+(``[INFO] Started Jetty Server``). Next, run the SliceJS project as a Java application from Eclipse by setting [com.slicejs.core.Main](https://github.com/sequeirashel/SliceJS/blob/master/src/main/java/com/slicejs/core/Main.java) as the Main class.
 
 Lastly, the outputted visualization can be viewed at the following address while the Jetty server is running:
 
